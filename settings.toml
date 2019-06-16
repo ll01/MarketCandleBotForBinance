@@ -1,0 +1,3 @@
+coincode = "NEOBTC"
+interval = "15m"
+connectionstring = "<add connection string  hear>"

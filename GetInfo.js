@@ -19,8 +19,10 @@ const candleSchema = mongoose.Schema({
 });
 
 
-const klineurl = 'https://api.binance.com/api/v1/klines?limit=1000&interval=1m&symbol=';
+// const klineurl = 'https://api.binance.com/api/v1/klines?limit=1000&interval=1m&symbol=';
 const connectionStringBase = "mongodb://localhost/";
+const klineBase = "https://api.binance.com/api/v1/klines"
+const klineLimit = 1000
 function ConvertDataPointToCandleOject(data) {
 return {
     openTime: data[0],
@@ -39,9 +41,9 @@ return {
     
 }
 
-var GetInfo = function GetInfo(symbol) {
-    this.symbol = symbol;
-    this.connectionString = connectionStringBase + symbol;
+var GetInfo = function GetInfo(symbol, intervalString, connectionString) {
+    this.klineurl =  `${klineBase}?limit=${klineLimit}&interval=${intervalString}&symbol=${symbol}`;
+    this.connectionString = connectionString;
 }
 
 GetInfo.prototype.storeData = function (data) {
@@ -60,7 +62,7 @@ GetInfo.prototype.storeData = function (data) {
 GetInfo.prototype.Run = function () {
 
     request.get({
-        url: klineurl + this.symbol,
+        url: this.klineurl,
         json: true,
     }, (err, response, data) => {
         console.log(response);
