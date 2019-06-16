@@ -1,3 +1,0 @@
-coincode = "NEOBTC"
-interval = "15m"
-connectionstring = "mongodb+srv://x:x@cluster0-qp7xc.mongodb.net/test?retryWrites=true&w=majority"
