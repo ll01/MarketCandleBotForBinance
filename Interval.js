@@ -28,7 +28,7 @@ function Interval(intervalString) {
     if (isNaN(multiplyer)) {
         throw new Error("invalid interval time interval")
     }
-    this.value = timeSpace *  multiplyer;
+    this.waitSeconds = timeSpace *  multiplyer;
     
 }
 

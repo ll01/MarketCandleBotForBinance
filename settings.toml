@@ -1,3 +1,3 @@
 coincode = "NEOBTC"
 interval = "15m"
-connectionstring = "<add connection string  hear>"
+connectionstring = "mongodb+srv://x:x@cluster0-qp7xc.mongodb.net/test?retryWrites=true&w=majority"

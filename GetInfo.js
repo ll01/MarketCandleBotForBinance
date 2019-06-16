@@ -42,6 +42,7 @@ return {
 }
 
 var GetInfo = function GetInfo(symbol, intervalString, connectionString) {
+    this.symbol= symbol
     this.klineurl =  `${klineBase}?limit=${klineLimit}&interval=${intervalString}&symbol=${symbol}`;
     this.connectionString = connectionString;
 }
@@ -49,11 +50,12 @@ var GetInfo = function GetInfo(symbol, intervalString, connectionString) {
 GetInfo.prototype.storeData = function (data) {
    var conntection = mongoose.connect(this.connectionString);
    
-    var CandleModel = mongoose.model('candle', candleSchema, 'Candles');
+    var CandleModel = mongoose.model('candle', candleSchema, `${this.symbol}-Candles`);
     data.forEach(rawData => {
         let candle = ConvertDataPointToCandleOject(rawData);
         const newCandle = new CandleModel((candle));
-    CandleModel.findOneAndUpdate({openTime: candle.openTime},candle, err => {
+        const  options = { upsert: true,  setDefaultsOnInsert: true };
+    CandleModel.findOneAndUpdate({openTime: candle.openTime},candle,options, err => {
         if (err) {console.log(err);}
         
     })
@@ -65,7 +67,6 @@ GetInfo.prototype.Run = function () {
         url: this.klineurl,
         json: true,
     }, (err, response, data) => {
-        console.log(response);
         if (err) { console.log(err); }
         else {
             this.storeData(data);
