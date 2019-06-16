@@ -13,6 +13,9 @@ LoadSettings.prototype.ReadFile = function () {
 LoadSettings.prototype.GetSettings = function () {
     this.ReadFile()
     const data = toml.parse(this.textToml)
+    if (data.limit === undefined) {
+        data.limit = 1000
+    }
     return data
 
 }

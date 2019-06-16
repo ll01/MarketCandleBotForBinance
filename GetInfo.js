@@ -41,10 +41,9 @@ return {
     
 }
 
-var GetInfo = function GetInfo(symbol, intervalString, connectionString) {
-    this.symbol= symbol
-    this.klineurl =  `${klineBase}?limit=${klineLimit}&interval=${intervalString}&symbol=${symbol}`;
-    this.connectionString = connectionString;
+var GetInfo = function GetInfo(settings) {
+    this.klineurl =  `${klineBase}?limit=${settings.limit}&interval=${settings.interval}&symbol=${this.symbol}`;
+    this.connectionString = settings.connectionstring;
 }
 
 GetInfo.prototype.storeData = function (data) {

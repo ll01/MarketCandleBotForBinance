@@ -1,5 +1,6 @@
 "use strict"
-function Interval(intervalString) {
+function Interval(settings) {
+    const intervalString = settings.interval
     const timeSpaceString = intervalString.slice(-1)
     const multiplyerString = intervalString.slice(0, intervalString.length - 1)
     var timeSpace = 0
@@ -28,7 +29,7 @@ function Interval(intervalString) {
     if (isNaN(multiplyer)) {
         throw new Error("invalid interval time interval")
     }
-    this.waitSeconds = timeSpace *  multiplyer;
+    this.waitSeconds = timeSpace *  multiplyer* settings.limit;
     
 }
 
