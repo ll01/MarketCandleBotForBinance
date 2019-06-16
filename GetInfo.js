@@ -38,7 +38,8 @@ function ConvertDataPointToCandleOject(data) {
 }
 
 var GetInfo = function GetInfo(settings) {
-    this.klineurl = `${klineBase}?limit=${settings.limit}&interval=${settings.interval}&symbol`;
+    this.symbols = settings.symbols
+    this.klineurl = `${klineBase}?limit=${settings.limit}&interval=${settings.interval}&symbol=`;
     this.connectionString = settings.connectionstring;
 }
 
@@ -64,6 +65,7 @@ GetInfo.prototype.Run = function () {
         }, (err, response, data) => {
             if (err) { console.log(err); }
             else {
+                if (data.code) { throw new Error(data.msg)} 
                 this.storeData(i, data);
             }
 
