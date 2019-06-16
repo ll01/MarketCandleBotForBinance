@@ -65,7 +65,7 @@ GetInfo.prototype.Run = function () {
         }, (err, response, data) => {
             if (err) { console.log(err); }
             else {
-                if (data.code) { throw new Error(data.msg)} 
+                if (data.code) { throw new Error(data.msg) }
                 this.storeData(i, data);
             }
 
