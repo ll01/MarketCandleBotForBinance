@@ -29,8 +29,8 @@ function Interval(settings) {
     if (isNaN(multiplyer)) {
         throw new Error("invalid interval time interval")
     }
-    this.waitSeconds = timeSpace *  multiplyer* settings.limit;
-    
+    this.waitSeconds = timeSpace * multiplyer * settings.limit;
+
 }
 
 module.exports = Interval

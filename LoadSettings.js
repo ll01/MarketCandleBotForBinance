@@ -7,7 +7,7 @@ function LoadSettings(settinsFileLocation) {
     this.textToml = undefined
 }
 LoadSettings.prototype.ReadFile = function () {
-   this.textToml =  fs.readFileSync(this.settingsPath)
+    this.textToml = fs.readFileSync(this.settingsPath)
 }
 
 LoadSettings.prototype.GetSettings = function () {

@@ -1,4 +1,4 @@
-coincode = "NEOBTC"
+coincode = ["NEOBTC", "BTCTUSD"]
 interval = "15m"
 limit = 50
 connectionstring = "mongodb+srv://x:x@cluster0-qp7xc.mongodb.net/test?retryWrites=true&w=majority"
